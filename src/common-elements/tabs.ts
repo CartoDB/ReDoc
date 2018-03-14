@@ -22,8 +22,6 @@ export const Tabs = styled(ReactTabs)`
       font-size: 12px;
       color: #747d82;
 
-      // background-color: rgba(0, 0, 0, 0.2);
-      // border-bottom: 1px solid rgba(0, 0, 0, 0.5);
       cursor: pointer;
       text-align: center;
       outline: none;
@@ -31,8 +29,6 @@ export const Tabs = styled(ReactTabs)`
 
       &.react-tabs__tab--selected {
         color: #fff;
-        // background: rgba(0, 0, 0, 0.5);
-        // border-bottom: 1px solid ${props => props.theme.schemaView.linesColor};
       }
 
       &:only-child {
