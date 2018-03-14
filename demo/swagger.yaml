@@ -1,865 +1,517 @@
-swagger: '2.0'
-schemes:
-  - http
-  - https
-host: petstore.swagger.io
-basePath: /v2
+openapi: 3.0.0
 info:
-  description: |
-    This is a sample server Petstore server.
-    You can find out more about Swagger at
-    [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).
-    For this sample, you can use the api key `special-key` to test the authorization filters.
+  title: Auth API
+  description: >
     # Introduction
-    This API is documented in **OpenAPI format** and is based on
-    [Petstore sample](http://petstore.swagger.io/) provided by [swagger.io](http://swagger.io) team.
-    It was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)
-    tool and [ReDoc](https://github.com/Rebilly/ReDoc) documentation. In addition to standard
-    OpenAPI syntax we use a few [vendor extensions](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md).
-    # OpenAPI Specification
-    This API is documented in **OpenAPI format** and is based on
-    [Petstore sample](http://petstore.swagger.io/) provided by [swagger.io](http://swagger.io) team.
-    It was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)
-    tool and [ReDoc](https://github.com/Rebilly/ReDoc) documentation. In addition to standard
-    OpenAPI syntax we use a few [vendor extensions](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md).
-    # Cross-Origin Resource Sharing
-    This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
-    And that allows cross-domain communication from the browser.
-    All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
-    # Authentication
-    Petstore offers two forms of authentication:
-      - API Key
-      - OAuth2
 
-    OAuth2 - an open protocol to allow secure authorization in a simple
-    and standard method from web, mobile and desktop applications.
-    <!-- ReDoc-Inject: <security-definitions> -->
-  version: 1.0.0
-  title: Swagger Petstore
-  termsOfService: 'http://swagger.io/terms/'
+    This API allows you to manage API keys. API keys are the fundamental
+    building block of CARTO's authorization system. See this this guide for more
+    information.
+
+
+    This API accepts and returns JSON.
+
+    API base endpoint is `https://<your_username>.carto.com/api/v3/api_keys` or `https://<org_name>.carto.com/u/<your_username/api/v3/api_keys` in case you are using a user belonging to an organization.
+
+    # Authorization
+
+    There are three different API Keys that provide with different access privileges:
+
+    1. `default`: This API provides access to all public objects. It cannot be removed.
+
+    1. `master`: Using this API Key you will have full access and will be able to create/manage `regular` API Keys. It cannot be removed. You should keep its token safe and use it only when strictly necessary.
+
+    1. `regular`: This API Keys can be created with custom access privileges and can also be removed.
+
+    # API Key format
+
+    Every API Key consists on four main parts:
+
+    1. **name**: You will choose it when creating the API Key and it will be used for indexing your API Keys.
+
+    1. **type**: As mentioned before, there are three type of API Keys: `default`, `master` and `regular` providing different levels of access.
+
+    1. **token**: It will be used for authenticating your requests.
+
+    1. **grants**: Describes which APIs this API Key provides access to and to which tables. It consists on an array of two JSON objects. This object's `type` attribute can be `apis` or `database`:
+
+        - `apis`: Describes which APIs does this API Key provide access to through `apis` attribute:
+        ```{
+              {
+                    "type": "apis",
+                    "apis": [
+                        "sql",
+                        "maps"
+                    ]
+                }
+        ```
+        - `database`: Describes to which tables and which privleges on each table this API Key grants access to though `tables` attribute:
+        ```{
+              {
+                    "type": "database",
+                    "tables": [
+                        {
+                            "schema": "public",
+                            "name": "my_table",
+                            "permissions": [
+                                "insert",
+                                "select",
+                                "update"
+                            ]
+                        }
+                    ]
+                }
+        ```
+
+    # Authentication
+
+    In order to authenticate your requests to the API, they need to include a `Basic` `Authentication` header, where the `username` would be your username and the `password` would be your API Key's token. This authentication method will be valid across all CARTO components (Auth API, Maps API, SQL API). You can build your own `Authorization` header as follows:
+
+
+    ```
+    "Basic #{Base64.strict_encode64(username + ':' + api_key.token)}"
+    ```
+
+
+    **Important:** The API key you provide to access Auth API must be of type
+    `master`.
+  version: 0.0.1
   contact:
-    email: apiteam@swagger.io
-    url: https://github.com/Rebilly/ReDoc
-  x-logo:
-    url: 'https://rebilly.github.io/ReDoc/petstore-logo.png'
-  license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
-externalDocs:
-  description: Find out how to create Github repo for your OpenAPI spec.
-  url: 'https://github.com/Rebilly/generator-openapi-repo'
-tags:
-  - name: pet
-    description: Everything about your Pets
-  - name: store
-    description: Access to Petstore orders
-  - name: user
-    description: Operations about user
-x-tagGroups:
-  - name: General
-    tags:
-      - pet
-      - store
-  - name: User Management
-    tags:
-      - user
-securityDefinitions:
-  petstore_auth:
-    description: |
-      Get access to data while protecting your account credentials.
-      OAuth2 is also a safer and more secure way to give you access.
-    type: oauth2
-    authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
-    flow: implicit
-    scopes:
-      'write:pets': modify pets in your account
-      'read:pets': read your pets
-  api_key:
-    description: |
-      For this sample, you can use the api key `special-key` to test the authorization filters.
-    type: apiKey
-    name: api_key
-    in: header
-x-servers:
-  - url: //petstore.swagger.io/v2
-    description: Default server
-  - url: //petstore.swagger.io/sandbox
-    description: Sandbox server
+    name: Have you found an error? Github issues
+    url: 'https://github.com/CartoDB/cartodb/issues/new'
+servers:
+  - url: 'https://{user}.carto.com/api/v3'
+    description: Production server (uses live data)
+    variables:
+      domain:
+        default: carto.com
+        description: 'If on premise, change it to your domain'
+      user:
+        default: username
+        description: Your username
 paths:
-  /pet:
-    post:
-      tags:
-        - pet
-      summary: Add a new pet to the store
-      description: Add new pet to the store inventory.
-      operationId: addPet
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: Pet object that needs to be added to the store
-          required: true
-          schema:
-            $ref: '#/definitions/Pet'
-      responses:
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      x-code-samples:
-        - lang: 'C#'
-          source: |
-            PetStore.v1.Pet pet = new PetStore.v1.Pet();
-            pet.setApiKey("your api key");
-            pet.petType = PetStore.v1.Pet.TYPE_DOG;
-            pet.name = "Rex";
-            // set other fields
-            PetStoreResponse response = pet.create();
-            if (response.statusCode == HttpStatusCode.Created)
-            {
-              // Successfully created
-            }
-            else
-            {
-              // Something wrong -- check response for errors
-              Console.WriteLine(response.getRawResponse());
-            }
-        - lang: PHP
-          source: "$form = new \\PetStore\\Entities\\Pet();\n$form->setPetType(\"Dog\");\n$form->setName(\"Rex\");\n// set other fields\ntry {\n    $pet = $client->pets()->create($form);\n} catch (UnprocessableEntityException $e) {\n    var_dump($e->getErrors());\n}\n"
-    put:
-      tags:
-        - pet
-      summary: Update an existing pet
-      description: ''
-      operationId: updatePet
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: Pet object that needs to be added to the store
-          required: true
-          schema:
-            $ref: '#/definitions/Pet'
-      responses:
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-        '405':
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      x-code-samples:
-        - lang: PHP
-          source: "$form = new \\PetStore\\Entities\\Pet();\n$form->setPetId(1);\n$form->setPetType(\"Dog\");\n$form->setName(\"Rex\");\n// set other fields\ntry {\n    $pet = $client->pets()->update($form);\n} catch (UnprocessableEntityException $e) {\n    var_dump($e->getErrors());\n}\n"
-  '/pet/{petId}':
+  /api_keys:
     get:
+      summary: List API keys
+      description: Returns the API keys list.
       tags:
-        - pet
-      summary: Find pet by ID
-      description: Returns a single pet
-      operationId: getPetById
-      produces:
-        - application/xml
-        - application/json
+        - API Keys
+      operationId: getApiKeys
       parameters:
-        - name: petId
-          in: path
-          description: ID of pet to return
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: successful operation
+        - in: query
+          name: per_page
           schema:
-            $ref: '#/definitions/Pet'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-      security:
-        - api_key: []
-    post:
-      tags:
-        - pet
-      summary: Updates a pet in the store with form data
-      description: ''
-      operationId: updatePetWithForm
-      consumes:
-        - application/x-www-form-urlencoded
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet that needs to be updated
-          required: true
-          type: integer
-          format: int64
-        - name: name
-          in: formData
-          description: Updated name of the pet
-          required: false
-          type: string
-        - name: status
-          in: formData
-          description: Updated status of the pet
-          required: false
-          type: string
-      responses:
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-    delete:
-      tags:
-        - pet
-      summary: Deletes a pet
-      description: ''
-      operationId: deletePet
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: api_key
-          in: header
-          required: false
-          type: string
-          x-example: Bearer <TOKEN>
-        - name: petId
-          in: path
-          description: Pet id to delete
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '400':
-          description: Invalid pet value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  '/pet/{petId}/uploadImage':
-    post:
-      tags:
-        - pet
-      summary: uploads an image
-      description: ''
-      operationId: uploadFile
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/json
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to update
-          required: true
-          type: integer
-          format: int64
-        - name: additionalMetadata
-          in: formData
-          description: Additional data to pass to server
-          required: false
-          type: string
-        - name: file
-          in: formData
-          description: file to upload
-          required: false
-          type: file
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            $ref: '#/definitions/ApiResponse'
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  /pet/findByStatus:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by status
-      description: Multiple status values can be provided with comma seperated strings
-      operationId: findPetsByStatus
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: status
-          in: query
-          description: Status values that need to be considered for filter
-          required: true
-          type: array
-          items:
-            type: string
-            enum:
-              - available
-              - pending
-              - sold
-            default: available
-          collectionFormat: csv
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Pet'
-        '400':
-          description: Invalid status value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  /pet/findByTags:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by tags
-      description: 'Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.'
-      operationId: findPetsByTags
-      deprecated: true
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: tags
-          in: query
-          description: Tags to filter by
-          required: true
-          type: array
-          items:
-            type: string
-          collectionFormat: csv
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Pet'
-        '400':
-          description: Invalid tag value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  /store/inventory:
-    get:
-      tags:
-        - store
-      summary: Returns pet inventories by status
-      description: Returns a map of status codes to quantities
-      operationId: getInventory
-      produces:
-        - application/json
-      parameters: []
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            type: object
-            additionalProperties:
-              type: integer
-              format: int32
-      security:
-        - api_key: []
-  /store/order:
-    post:
-      tags:
-        - store
-      summary: Place an order for a pet
-      description: ''
-      operationId: placeOrder
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: order placed for purchasing the pet
-          required: true
-          schema:
-            $ref: '#/definitions/Order'
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            $ref: '#/definitions/Order'
-        '400':
-          description: Invalid Order
-  '/store/order/{orderId}':
-    get:
-      tags:
-        - store
-      summary: Find purchase order by ID
-      description: 'For valid response try integer IDs with value <= 5 or > 10. Other values will generated exceptions'
-      operationId: getOrderById
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: orderId
-          in: path
-          description: ID of pet that needs to be fetched
-          required: true
-          type: integer
-          maximum: 5
-          minimum: 1
-          format: int64
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            $ref: '#/definitions/Order'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Order not found
-    delete:
-      tags:
-        - store
-      summary: Delete purchase order by ID
-      description: For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors
-      operationId: deleteOrder
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: orderId
-          in: path
-          description: ID of the order that needs to be deleted
-          required: true
-          type: string
-          minimum: 1
-      responses:
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Order not found
-  /user:
-    post:
-      tags:
-        - user
-      summary: Create user
-      description: This can only be done by the logged in user.
-      operationId: createUser
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: Created user object
-          required: true
-          schema:
-            $ref: '#/definitions/User'
-      responses:
-        default:
-          description: successful operation
-  '/user/{username}':
-    get:
-      tags:
-        - user
-      summary: Get user by user name
-      description: ''
-      operationId: getUserByName
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: username
-          in: path
-          description: 'The name that needs to be fetched. Use user1 for testing. '
-          required: true
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            $ref: '#/definitions/User'
-        '400':
-          description: Invalid username supplied
-        '404':
-          description: User not found
-    put:
-      tags:
-        - user
-      summary: Updated user
-      description: This can only be done by the logged in user.
-      operationId: updateUser
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: username
-          in: path
-          description: name that need to be deleted
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Updated user object
-          required: true
-          schema:
-            $ref: '#/definitions/User'
-      responses:
-        '400':
-          description: Invalid user supplied
-        '404':
-          description: User not found
-    delete:
-      tags:
-        - user
-      summary: Delete user
-      description: This can only be done by the logged in user.
-      operationId: deleteUser
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: username
-          in: path
-          description: The name that needs to be deleted
-          required: true
-          type: string
-      responses:
-        '400':
-          description: Invalid username supplied
-        '404':
-          description: User not found
-  /user/createWithArray:
-    post:
-      tags:
-        - user
-      summary: Creates list of users with given input array
-      description: ''
-      operationId: createUsersWithArrayInput
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: List of user object
-          required: true
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/User'
-      responses:
-        default:
-          description: successful operation
-  /user/createWithList:
-    post:
-      tags:
-        - user
-      summary: Creates list of users with given input array
-      description: ''
-      operationId: createUsersWithListInput
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: List of user object
-          required: true
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/User'
-      responses:
-        default:
-          description: successful operation
-  /user/login:
-    get:
-      tags:
-        - user
-      summary: Logs user into the system
-      description: ''
-      operationId: loginUser
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: username
-          in: query
-          description: The user name for login
-          required: true
-          type: string
-        - name: password
-          in: query
-          description: The password for login in clear text
-          required: true
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            type: string
-          examples:
-            application/json: OK
-            application/xml: <message> OK </message>
-            text/plain: OK
-          headers:
-            X-Rate-Limit:
-              type: integer
-              format: int32
-              description: calls per hour allowed by the user
-            X-Expires-After:
-              type: string
-              format: date-time
-              description: date in UTC when toekn expires
-        '400':
-          description: Invalid username/password supplied
-  /user/logout:
-    get:
-      tags:
-        - user
-      summary: Logs out current logged in user session
-      description: ''
-      operationId: logoutUser
-      produces:
-        - application/xml
-        - application/json
-      parameters: []
-      responses:
-        default:
-          description: successful operation
-definitions:
-  ApiResponse:
-    type: object
-    properties:
-      code:
-        type: integer
-        format: int32
-      type:
-        type: string
-      message:
-        type: string
-  Cat:
-    description: A representation of a cat
-    allOf:
-      - $ref: '#/definitions/Pet'
-      - type: object
-        properties:
-          huntingSkill:
-            type: string
-            description: The measured skill for hunting
-            default: lazy
-            enum:
-              - clueless
-              - lazy
-              - adventurous
-              - aggressive
-        required:
-          - huntingSkill
-  Category:
-    type: object
-    properties:
-      id:
-        description: Category ID
-        allOf:
-          - $ref: '#/definitions/Id'
-      name:
-        description: Category name
-        type: string
-        minLength: 1
-      sub:
-        description: Test Sub Category
-        type: object
-        properties:
-          prop1:
-            type: string
-            description: Dumb Property
-    xml:
-      name: Category
-  Dog:
-    description: A representation of a dog
-    allOf:
-      - $ref: '#/definitions/Pet'
-      - type: object
-        properties:
-          packSize:
             type: integer
-            format: int32
-            description: The size of the pack the dog is from
-            default: 1
-            minimum: 1
-        required:
-          - packSize
-  HoneyBee:
-    description: A representation of a honey bee
-    allOf:
-      - $ref: '#/definitions/Pet'
-      - type: object
-        properties:
-          honeyPerDay:
-            type: number
-            description: Average amount of honey produced per day in ounces
-            example: 3.14
-        required:
-          - honeyPerDay
-  Id:
-    type: integer
-    format: int64
-  Order:
-    type: object
-    properties:
-      id:
-        description: Order ID
-        allOf:
-          - $ref: '#/definitions/Id'
-      petId:
-        description: Pet ID
-        allOf:
-          - $ref: '#/definitions/Id'
-      quantity:
-        type: integer
-        format: int32
-        minimum: 1
-        default: 1
-      shipDate:
-        description: Estimated ship date
-        type: string
-        format: date-time
-      status:
-        type: string
-        description: Order Status
-        enum:
-          - placed
-          - approved
-          - delivered
-      complete:
-        description: Indicates whenever order was completed or not
-        type: boolean
-        default: false
-    xml:
-      name: Order
-  Pet:
-    type: object
-    required:
-      - name
-      - photoUrls
-    discriminator: petType
-    properties:
-      id:
-        description: Pet ID
-        allOf:
-          - $ref: '#/definitions/Id'
-      category:
-        description: Categories this pet belongs to
-        allOf:
-          - $ref: '#/definitions/Category'
-      name:
-        description: The name given to a pet
-        type: string
-        example: Guru
-      photoUrls:
-        description: The list of URL to a cute photos featuring pet
-        type: array
-        xml:
-          name: photoUrl
-          wrapped: true
-        items:
+          description: Limits number of API Keys listed
+          required: false
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: Defines what page to fetch
+          required: false
+        - in: query
+          name: order
+          schema:
+            type: string
+          description: Its used to define the critera by which API Keys are listed. It can be any of the attributes
+          required: false
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiKeys'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyHTTPBasicAuth: []
+        - ApiKeyQueryParam: []
+
+    post:
+      summary: Create API key
+      description: >-
+        Creates a `regular` API key. `master` and `default_public` API Keys are automatically generated on
+        user's creation.
+      tags:
+        - API Keys
+      operationId: createApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyCreation'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/BadInput'
+      security:
+        - ApiKeyHTTPBasicAuth: []
+        - ApiKeyQueryParam: []
+
+  '/api_keys/{name}':
+    parameters:
+      - $ref: '#/components/parameters/apiKeyName'
+    get:
+      summary: Get API key
+      description: >-
+        Returns an API key based on its `name`.
+
+      tags:
+        - API Keys
+      operationId: getApiKeyById
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+        - ApiKeyHTTPBasicAuth: []
+        - ApiKeyQueryParam: []
+
+    delete:
+      summary: Delete API key
+      description: >-
+        Deletes an API key based on it's `name`. Only `regular` API keys can be
+        deleted.
+      tags:
+        - API Keys
+      operationId: deleteApiKeyById
+      responses:
+        '200':
+          description: The resource was deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+        - ApiKeyHTTPBasicAuth: []
+        - ApiKeyQueryParam: []
+      x-code-samples:
+
+  '/api_keys/{name}/regenerate':
+    parameters:
+      - $ref: '#/components/parameters/apiKeyName'
+    post:
+      summary: Regenerate API key token
+      description: Regenerates the API key token. The rest of the fields remain the same.
+      tags:
+        - API Keys
+      operationId: regenerateApiKeyById
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+        - ApiKeyHTTPBasicAuth: []
+        - ApiKeyQueryParam: []
+      x-code-samples:
+
+components:
+  schemas:
+    ApiKeys:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of API Keys
+        count:
+          type: integer
+          description: Number of returned API Keys
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKey'
+        _links:
+          type: object
+          properties:
+            first:
+              $ref: '#/components/schemas/Links'
+              description: Link to the first page
+            prev:
+              $ref: '#/components/schemas/Links'
+              description: Link to the previous page
+            next:
+              $ref: '#/components/schemas/Links'
+              description: Link to the next page
+            last:
+              $ref: '#/components/schemas/Links'
+              description: Link to the last page
+      example:
+        total: 3
+        count: 3
+        result:
+          - name: Master
+            user:
+              username: amartin
+            type: master
+            token: slxIYwIDyEGGS2W9W-uEKw
+            grants:
+              - type: apis
+                apis:
+                  - sql
+                  - maps
+              - type: database
+                tables: []
+            created_at: '2018-02-08 14:24:41 +0000'
+            updated_at: '2018-02-08 14:24:41 +0000'
+            _links:
+              self: 'https://carto.com/api/v3/api_keys/Master'
+          - name: MyTableApi
+            user:
+              username: amartin
+            type: regular
+            token: moLv8B-kotcjUL-uxMhbGg
+            grants:
+              - type: apis
+                apis:
+                  - maps
+              - type: database
+                tables:
+                  - schema: public
+                    name: my_table
+                    permissions:
+                      - insert
+                      - select
+                      - update
+            created_at: '2018-02-14 13:23:12 +0000'
+            updated_at: '2018-02-14 13:23:12 +0000'
+            _links:
+              self: 'https://carto.com/api/v3/api_keys/MyTableApi'
+          - name: Default public
+            user:
+              username: amartin
+            type: default
+            token: default_public
+            grants:
+              - type: apis
+                apis:
+                  - sql
+                  - maps
+              - type: database
+                tables: []
+            created_at: '2018-02-15 13:50:36 +0000'
+            updated_at: '2018-02-15 13:50:36 +0000'
+            _links:
+              self: 'https://carto.com/api/v3/api_keys/Default%20public'
+        _links:
+          first:
+            href: 'https://carto.com/api/v3/api_keys?order=updated_at&page=1&per_page=20'
+          last:
+            href: 'https://carto.com/api/v3/api_keys?order=updated_at&page=1&per_page=20'
+
+    ApiKey:
+      allOf:
+        - type: object
+          properties:
+            name:
+              type: string
+            user:
+              properties:
+                username:
+                  type: string
+            type:
+              $ref: '#/components/schemas/ApiKeysTypes'
+            token:
+              type: string
+            grants:
+              type: array
+              items:
+                oneOf:
+                  - $ref: '#/components/schemas/ApisGrant'
+                  - $ref: '#/components/schemas/GrantDatabase'
+            _links:
+              type: object
+              properties:
+                self:
+                  $ref: '#/components/schemas/Links'
+                  description: Link to the resource
+        - $ref: '#/components/schemas/Timestamps'
+      required:
+        - name
+        - type
+        - grants
+      example:
+        name: MyTableApi
+        user:
+          username: amartin
+        type: regular
+        token: moLv8B-kotcjUL-uxMhbGg
+        grants:
+          - type: apis
+            apis:
+              - maps
+          - type: database
+            tables:
+              - schema: public
+                name: my_table
+                permissions:
+                  - insert
+                  - select
+                  - update
+        created_at: '2018-02-14 13:23:12 +0000'
+        updated_at: '2018-02-14 13:23:12 +0000'
+        _links:
+          self:
+            href: 'http://amartin.carto.com/api/v3/api_keys/MyTableApi'
+
+    ApiKeyCreation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: For identifying your API Key
+        grants:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/GrantDatabase'
+              - $ref: '#/components/schemas/ApisGrant'
+            discriminator:
+              propertyName: type
+      required:
+        - name
+        - grants
+      example:
+        name: MyTableApi
+        grants:
+          - type: apis
+            apis:
+              - maps
+          - type: database
+            tables:
+              - schema: public
+                name: my_table
+                permissions:
+                  - select
+                  - update
+                  - insert
+
+    GrantDatabase:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - database
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableGrant'
+      required:
+        - type
+        - tables
+    TableGrant:
+      type: object
+      properties:
+        name:
+          type: string
+        schema:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+            enum:
+              - read
+              - insert
+              - update
+              - delete
+          uniqueItems: true
+      required:
+        - name
+        - schema
+        - permissions
+    ApisGrant:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - apis
+        apis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Apis'
+          uniqueItems: true
+      required:
+        - type
+        - apis
+    Apis:
+      type: string
+      enum:
+        - sql
+        - maps
+    ApiKeysTypes:
+      type: string
+      enum:
+        - master
+        - default
+        - regular
+    Timestamps:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Links:
+      type: object
+      properties:
+        href:
           type: string
           format: url
-      tags:
-        description: Tags attached to the pet
-        type: array
-        xml:
-          name: tag
-          wrapped: true
-        items:
-          $ref: '#/definitions/Tag'
-      status:
+          description: link to the resource
+  securitySchemes:
+    ApiKeyHTTPBasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyQueryParam:
+      type: apiKey
+      in: header
+      name: api_key
+  parameters:
+    apiKeyName:
+      in: path
+      name: name
+      required: true
+      schema:
         type: string
-        description: Pet status in the store
-        enum:
-          - available
-          - pending
-          - sold
-      petType:
-        description: Type of a pet
-        type: string
-    xml:
-      name: Pet
-  Tag:
-    type: object
-    properties:
-      id:
-        description: Tag ID
-        allOf:
-          - $ref: '#/definitions/Id'
-      name:
-        description: Tag name
-        type: string
-        minLength: 1
-    xml:
-      name: Tag
-  User:
-    type: object
-    properties:
-      id:
-        description: User ID
-        $ref: '#/definitions/Id'
-      username:
-        description: User supplied username
-        type: string
-        minLength: 4
-        example: John78
-      firstName:
-        description: User first name
-        type: string
-        minLength: 1
-        example: John
-      lastName:
-        description: User last name
-        type: string
-        minLength: 1
-        example: Smith
-      email:
-        description: User email address
-        type: string
-        format: email
-        example: john.smith@example.com
-      password:
-        type: string
-        description: 'User password, MUST contain a mix of upper and lower case letters, as well as digits'
-        format: password
-        minLength: 8
-        pattern: '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])'
-        example: drowssaP123
-      phone:
-        description: User phone number in international format
-        type: string
-        pattern: "^\\+(?:[0-9]-?){6,14}[0-9]$"
-        example: +1-202-555-0192
-        x-nullable: true
-      userStatus:
-        description: User status
-        type: integer
-        format: int32
-    xml:
-      name: User
+      description: the API key `name`
+  responses:
+    NotFound:
+      description: The specified resource was not found
+    Unauthorized:
+      description: Unauthorized. Wrong or no authentication provided.
+    Forbidden:
+      description: Forbidden. The API key does not authorize this request.
+    BadInput:
+      description: Request's parameters error
