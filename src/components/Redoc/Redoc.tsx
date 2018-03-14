@@ -5,14 +5,11 @@ import { ThemeProvider } from '../../styled-components';
 
 import { AppStore } from '../../services';
 import { ApiInfo } from '../ApiInfo/ApiInfo';
-// import { ApiLogo } from '../ApiLogo/ApiLogo';
 import { ContentItems } from '../ContentItems/ContentItems';
 import { OptionsProvider } from '../OptionsProvider';
 import { SideMenu } from '../SideMenu/SideMenu';
 import { StickyResponsiveSidebar } from '../StickySidebar/StickyResponsiveSidebar';
 import { ApiContent, BackgroundStub, RedocWrap } from './elements';
-
-// import { SearchBox } from '../SearchBox/SearchBox';
 
 export interface RedocProps {
   store: AppStore;
@@ -40,13 +37,6 @@ export class Redoc extends React.Component<RedocProps> {
         <OptionsProvider options={options}>
           <RedocWrap className="redoc-wrap">
             <StickyResponsiveSidebar menu={menu} className="menu-content">
-              {/* <ApiLogo info={spec.info} />
-              <SearchBox
-                search={search}
-                marker={marker}
-                getItemById={menu.getItemById}
-                onActivate={menu.activateAndScroll}
-              /> */}
               <SideMenu menu={menu} />
             </StickyResponsiveSidebar>
             <ApiContent className="api-content">

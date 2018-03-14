@@ -20,7 +20,6 @@ export const DownloadButton = styled.a`
   padding: 4px 8px 4px 12px;
   display: block;
   text-decoration: none;
-  margin-bottom: 24px;
 `;
 
 export const InfoSpan = styled.span`
