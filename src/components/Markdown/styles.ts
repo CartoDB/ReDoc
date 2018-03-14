@@ -23,12 +23,12 @@ export const markdownCss = css`
   }
 
   code {
-    color: #e53935;
-    background-color: rgba(38, 50, 56, 0.04);
+    color: #5300CC;
+    background-color: rgba(80, 0, 204, 0.05);
     font-family: ${props => props.theme.code.fontFamily};
-    border-radius: 2px;
-    border: 1px solid rgba(38, 50, 56, 0.1);
-    padding: 0.1em 0.25em 0.2em;
+    border-radius: 4px;
+    /* border: 1px solid rgba(38, 50, 56, 0.1); */
+    padding: 1px 4px;
     font-size: ${props => props.theme.code.fontSize};
   }
 
