@@ -26,16 +26,12 @@ class Json extends React.PureComponent<JsonProps> {
 
   renderInner = ({ renderCopyButton }) => (
     <JsonViewerWrap>
-      <SampleControls>
-        {renderCopyButton()}
-        <span onClick={this.expandAll}> Expand all </span>
-        <span onClick={this.collapseAll}> Collapse all </span>
-      </SampleControls>
       <div
         className={this.props.className}
         ref={node => (this.node = node!)}
         dangerouslySetInnerHTML={{ __html: jsonToHTML(this.props.data) }}
       />
+      <SampleControls>{renderCopyButton()}</SampleControls>
     </JsonViewerWrap>
   );
 

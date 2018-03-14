@@ -15,8 +15,15 @@ export const Tabs = styled(ReactTabs)`
       padding: 5px 10px;
       display: inline-block;
       flex: 1;
-      background-color: rgba(0, 0, 0, 0.2);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+
+      font-family: ${props => props.theme.headingsFont.family};
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 12px;
+      color: #747d82;
+
+      // background-color: rgba(0, 0, 0, 0.2);
+      // border-bottom: 1px solid rgba(0, 0, 0, 0.5);
       cursor: pointer;
       text-align: center;
       outline: none;
@@ -24,8 +31,8 @@ export const Tabs = styled(ReactTabs)`
 
       &.react-tabs__tab--selected {
         color: #fff;
-        background: rgba(0, 0, 0, 0.5);
-        border-bottom: 1px solid ${props => props.theme.schemaView.linesColor};
+        // background: rgba(0, 0, 0, 0.5);
+        // border-bottom: 1px solid ${props => props.theme.schemaView.linesColor};
       }
 
       &:only-child {
@@ -33,28 +40,29 @@ export const Tabs = styled(ReactTabs)`
         min-width: 100px;
       }
 
-      &.tab-success {
-        color: ${props => props.theme.colors.success};
-      }
+      // &.tab-success {
+      //   color: ${props => props.theme.colors.success};
+      // }
 
-      &.tab-redirect {
-        color: ${props => props.theme.colors.redirect};
-      }
+      // &.tab-redirect {
+      //   color: ${props => props.theme.colors.redirect};
+      // }
 
-      &.tab-info {
-        color: ${props => props.theme.colors.info};
-      }
+      // &.tab-info {
+      //   color: ${props => props.theme.colors.info};
+      // }
 
-      &.tab-error {
-        color: ${props => props.theme.colors.error};
-      }
+      // &.tab-error {
+      //   color: ${props => props.theme.colors.error};
+      // }
     }
   }
   > .react-tabs__tab-panel {
-    background: #171e21;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
     & > div,
     & > pre {
-      padding: 20px;
+      padding: 20px 0;
       margin: 0;
     }
   }
@@ -83,6 +91,8 @@ export const SmallTabs = styled(Tabs)`
     }
   }
   > .react-tabs__tab-panel {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
     & > div,
     & > pre {
       padding: 10px 0;

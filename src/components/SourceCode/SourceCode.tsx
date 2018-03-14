@@ -34,8 +34,8 @@ export class SourceCodeWithCopy extends React.PureComponent<SourceCodeProps> {
       <CopyButtonWrapper data={this.props.source}>
         {({ renderCopyButton }) => (
           <SampleControlsWrap>
-            <SampleControls>{renderCopyButton()}</SampleControls>
             <SourceCode lang={this.props.lang} source={this.props.source} />
+            <SampleControls>{renderCopyButton()}</SampleControls>
           </SampleControlsWrap>
         )}
       </CopyButtonWrapper>

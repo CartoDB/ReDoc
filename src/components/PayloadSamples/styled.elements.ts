@@ -3,10 +3,11 @@ import styled from '../../styled-components';
 import { SimpleDropdown } from '../../common-elements';
 
 export const MimeLabel = styled.div`
-  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  font-family: ${props => props.theme.code.fontFamily};
+  font-size: 12px;
   margin: 0 0 10px 0;
   display: block;
-  color: rgba(255, 255, 255, 0.8);
+  color: #747d82;
 `;
 
 export const InvertedSimpleDropdown = styled(SimpleDropdown)`

@@ -1,18 +1,21 @@
 import styled from '../styled-components';
 
 export const SampleControls = styled.div`
-  opacity: 0.4;
-  transition: opacity 0.3s ease;
+  font-family: ${props => props.theme.headingsFont.family};
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  color: #747d82;
   text-align: right;
+
+  &:hover {
+    color: #909ba0;
+  }
 
   > span {
     display: inline-block;
-    padding: 2px 10px;
+    padding: 2px 0;
     cursor: pointer;
-
-    :hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
   }
 `;
 

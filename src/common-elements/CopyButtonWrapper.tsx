@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Tooltip } from '../common-elements/Tooltip';
+//import { Tooltip } from '../common-elements/Tooltip';
 
 import { ClipboardService } from '../services/ClipboardService';
 
@@ -37,16 +37,9 @@ export class CopyButtonWrapper extends React.PureComponent<
   };
 
   renderCopyButton = () => {
-    return (
-      <span onClick={this.copy}>
-        <Tooltip
-          title={ClipboardService.isSupported() ? 'Copied' : 'Not supported in your browser'}
-          open={this.state.tooltipShown}
-        >
-          Copy
-        </Tooltip>
-      </span>
-    );
+    return ClipboardService.isSupported() ? (
+      <span onClick={this.copy}>{this.state.tooltipShown ? 'Copied!' : 'Click to Copy'}</span>
+    ) : null;
   };
 
   showTooltip() {
