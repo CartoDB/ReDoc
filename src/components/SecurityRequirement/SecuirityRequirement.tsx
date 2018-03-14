@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '../../styled-components';
 import { transparentizeHex } from '../../utils/styled';
 
-import { UnderlinedHeader } from '../../common-elements/headers';
+import { H5 } from '../../common-elements/headers';
 import { SecurityRequirementModel } from '../../services/models/SecurityRequirement';
 
 const ScopeName = styled.code`
@@ -36,13 +36,15 @@ export class SecurityRequirement extends React.PureComponent<SecurityRequirement
   }
 }
 
-const AuthHeaderColumn = styled.td``;
+const AuthHeaderColumn = styled.td`
+  vertical-align: top;
+`;
 
 const SecuritiesColumn = styled.td`
   width: ${props => props.theme.schemaView.defaultDetailsWidth};
 `;
 
-const AuthHeader = styled(UnderlinedHeader)`
+const AuthHeader = styled(H5)`
   display: inline-block;
 `;
 

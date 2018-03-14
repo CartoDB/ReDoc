@@ -1,14 +1,10 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { ResponseModel } from '../../services/models';
 import { ResponseView } from './Response';
+import { H5 } from '../../common-elements/headers';
 
-const ResponsesHeader = styled.h3`
-  font-size: 18px;
-  padding: 0.2em 0;
-  margin: 3em 0 1.1em;
-  color: #253137;
-  font-weight: normal;
+const ResponsesHeader = H5.extend`
+  margin-bottom: 15px;
 `;
 
 export interface ResponseListProps {

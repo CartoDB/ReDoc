@@ -1,6 +1,6 @@
 import styled from '../../styled-components';
 
-import { UnderlinedHeader } from '../../common-elements';
+import { H5 } from '../../common-elements';
 import { transparentizeHex } from '../../utils';
 import { ResponseTitle } from './ResponseTitle';
 
@@ -34,7 +34,7 @@ export const ResponseDetailsWrap = styled.div`
   padding: 10px;
 `;
 
-export const HeadersCaption = UnderlinedHeader.withComponent('caption').extend`
+export const HeadersCaption = H5.withComponent('caption').extend`
   text-align: left;
   margin-top: 1em;
 `;

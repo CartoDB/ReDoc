@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { ResponseModel } from '../../services/models';
 
-import { UnderlinedHeader } from '../../common-elements';
+import { H5 } from '../../common-elements';
 import { DropdownOrLabel } from '../DropdownOrLabel/DropdownOrLabel';
 import { MediaTypesSwitch } from '../MediaTypeSwitch/MediaTypesSwitch';
 import { Schema } from '../Schema';
@@ -51,9 +51,9 @@ export class ResponseView extends React.Component<{ response: ResponseModel }> {
 
   private renderDropdown = props => {
     return (
-      <UnderlinedHeader key="header">
+      <H5 key="header">
         Response Schema: <DropdownOrLabel {...props} />
-      </UnderlinedHeader>
+      </H5>
     );
   };
 }

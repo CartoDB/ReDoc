@@ -75,6 +75,7 @@ export const PropertyDetailsCell = styled.td`
   padding: 10px 0;
   width: ${props => props.theme.schemaView.defaultDetailsWidth};
   box-sizing: border-box;
+  vertical-align: top;
 
   tr.expanded & {
     border-bottom: none;

@@ -2,15 +2,28 @@ import styled, { media } from '../styled-components';
 
 export const MiddlePanel = styled.div`
   width: ${props => props.theme.middlePanel.width}px;
-  padding: 0 ${props => props.theme.spacingUnit * 2}px;
+  padding: ${props => props.theme.spacingUnit * 2}px;
+  position: relative;
 
-  &.api-info {
-    padding: ${props => props.theme.spacingUnit * 2}px ${props => props.theme.spacingUnit * 2}px 0;
+  > div,
+  > table {
+    margin-bottom: 30px;
   }
 
   ${media.lessThan('medium')`
     width: 100%;
   `};
+
+  &:after {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: calc(100% - 20px);
+    display: block;
+    content: '';
+    border-bottom: 1px solid #eeeeee;
+    transform: translateX(-50%);
+  }
 `;
 
 export const RightPanel = styled.div`
@@ -18,10 +31,22 @@ export const RightPanel = styled.div`
   color: #fafbfc;
   bckground-color: ${props => props.theme.rightPanel.backgroundColor};
   padding: ${props => props.theme.spacingUnit * 2}px;
+  position: relative;
 
   ${media.lessThan('medium')`
     width: 100%;
   `};
+
+  &:after {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: calc(100% - 20px);
+    display: block;
+    content: '';
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    transform: translateX(-50%);
+  }
 `;
 
 export const DarkRightPanel = styled(RightPanel)`

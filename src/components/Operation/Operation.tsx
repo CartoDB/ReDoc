@@ -21,18 +21,17 @@ import { OperationModel as OperationType } from '../../services/models';
 const OperationRow = styled(Row)`
   backface-visibility: hidden;
   contain: content;
-
   overflow: hidden;
   position: relative;
 
-  &:after {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    display: block;
-    content: '';
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  }
+  // &:after {
+  //   position: absolute;
+  //   bottom: 0;
+  //   width: 100%;
+  //   display: block;
+  //   content: '';
+  //   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  // }
 `;
 
 interface OperationProps {
@@ -48,7 +47,7 @@ export class Operation extends ComponentWithOptions<OperationProps> {
     const pathInMiddle = this.options.pathInMiddlePanel;
     return (
       <OperationRow>
-        <MiddlePanel>
+        <MiddlePanel className="middlePanel">
           <H2>
             <ShareLink href={'#' + operation.getHash()} />
             {summary} {deprecated && <Badge type="warning"> Deprecated </Badge>}
@@ -59,7 +58,7 @@ export class Operation extends ComponentWithOptions<OperationProps> {
           <Parameters parameters={operation.parameters} body={operation.requestBody} />
           <ResponsesList responses={operation.responses} />
         </MiddlePanel>
-        <DarkRightPanel>
+        <DarkRightPanel className="rightPanel">
           {!pathInMiddle && <Endpoint operation={operation} />}
           <RequestSamples operation={operation} />
           <ResponseSamples operation={operation} />

@@ -15,6 +15,18 @@ const AUTH_TYPES = {
 };
 
 const AuthTable = styled.table`
+  border-collapse: separate;
+
+  tr td,
+  tr th {
+    background-color: #fff;
+  }
+
+  tr:first-child td,
+  tr:first-child th {
+    background-color: #f9f9f9;
+  }
+
   ul > li {
     margin: 0.5em 0 !important;
   }

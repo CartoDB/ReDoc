@@ -24,7 +24,7 @@ export const RedocWrap = styled.div`
   }
 
   .redoc-markdown h1 {
-    padding-top: ${props => props.theme.spacingUnit * 4}px;
+    padding-top: ${props => props.theme.spacingUnit * 2}px;
   }
 
   a {
