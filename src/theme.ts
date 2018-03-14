@@ -7,6 +7,7 @@ const theme = {
   },
   colors: {
     main: '#2E3C43',
+    highlight: '#5300CC',
     success: '#00aa13',
     redirect: 'orange',
     error: '#e53935',
@@ -45,9 +46,9 @@ const theme = {
     fontWeight: '600',
   },
   links: {
-    color: undefined, // by default main color
-    visited: undefined, // by default main color
-    hover: undefined, // by default main color
+    color: '#1FAC06',
+    visited: '#1FAC06', // by default main color
+    hover: '#188B04',
   },
   menu: {
     width: 218,

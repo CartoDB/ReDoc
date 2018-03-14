@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import { ShelfIcon } from '../../common-elements/shelfs';
+// import { ShelfIcon } from '../../common-elements/shelfs';
 import { IMenuItem, OperationModel } from '../../services';
 import { MenuItems } from './MenuItems';
 import { MenuItemLabel, MenuItemLi, MenuItemTitle, OperationBadge } from './styled.elements';
@@ -28,11 +28,11 @@ export class MenuItem extends React.Component<MenuItemProps> {
         ) : (
           <MenuItemLabel depth={item.depth} active={item.active}>
             <MenuItemTitle title={item.name}>{item.name}</MenuItemTitle>
-            {(item.depth > 0 &&
+            {/* {(item.depth > 0 &&
               item.items.length > 0 && (
                 <ShelfIcon float={'right'} direction={item.active ? 'down' : 'right'} />
               )) ||
-              null}
+              null} */}
           </MenuItemLabel>
         )}
         {!withoutChildren &&

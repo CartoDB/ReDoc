@@ -60,25 +60,17 @@ export const OperationBadge = withProps<{ type: string }>(styled.span).attrs({
   }
 `;
 
-function menuItemActiveBg(depth): string {
-  if (depth > 1) {
-    return '#e1e1e1';
-  } else if (depth === 1) {
-    return '#f0f0f0';
-  } else {
-    return '';
-  }
-}
-
 export const MenuItemUl = withProps<{ active: boolean }>(styled.ul)`
   margin: 0;
   padding: 0;
 
-  & & {
-    font-size: 0.929em;
+  & ul {
+    padding-left: 12px;
+    padding-top: 12px;
   }
 
-  ${props => (props.active ? '' : 'display: none;')};
+  // To collapse menu when no active
+  /* ${props => (props.active ? '' : 'display: none;')}; */
 `;
 
 export const MenuItemLi = withProps<{ depth: number }>(styled.li)`
@@ -86,6 +78,7 @@ export const MenuItemLi = withProps<{ depth: number }>(styled.li)`
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0;
+  margin-bottom: 12px;
   ${props => (props.depth === 0 ? 'margin-top: 15px' : '')};
 `;
 
@@ -93,48 +86,39 @@ export const menuItemDepth = {
   0: css`
     opacity: 0.7;
     text-transform: uppercase;
-    font-size: 0.8em;
+    font-size: 12px;
     padding-bottom: 0;
     cursor: default;
-    color: ${props => props.theme.colors.text};
+    color: ${props => props.theme.colors.main};
   `,
   1: css`
-    font-size: 0.929em;
-    text-transform: uppercase;
-    &:hover {
-      color: ${props => props.theme.colors.main};
-    }
+    font: 600 12px/16px 'Montserrat';
+    color: ${props => props.theme.colors.main};
   `,
   2: css`
-    color: ${props => props.theme.colors.text};
+    font: 400 12px/16px 'Open Sans';
+    color: ${props => props.theme.colors.main};
   `,
 };
 
-export const MenuItemLabel = withProps<{
-  depth: number;
-  active: boolean;
-  deprecated?: boolean;
-}>(styled.label).attrs({
+export const MenuItemLabel = withProps<{ depth: number; active: boolean; deprecated?: boolean }>(
+  styled.label,
+).attrs({
   className: props =>
     classnames('menu-item', '-depth' + props.depth, {
       active: props.active,
     }),
 })`
   cursor: pointer;
-  color: ${props => (props.active ? props.theme.colors.main : props.theme.colors.text)};
   margin: 0;
-  padding: 12.5px ${props => props.theme.spacingUnit}px;
   display: flex;
   justify-content: space-between;
   font-family: ${props => props.theme.headingsFont.family};
   ${props => menuItemDepth[props.depth]};
-  background-color: ${props => (props.active ? menuItemActiveBg(props.depth) : '')};
+  font-weight: ${props => (props.active ? 600 : 400)};
+  color: ${props => (props.active ? props.theme.colors.highlight : props.theme.colors.main)};
 
   ${props => (props.deprecated && deprecatedCss) || ''};
-
-  &:hover {
-    background-color: ${props => menuItemActiveBg(props.depth)};
-  }
 `;
 
 export const MenuItemTitle = withProps<{ width?: string }>(styled.span).attrs({
