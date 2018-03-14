@@ -49,8 +49,8 @@ const theme = {
     hover: undefined, // by default main color
   },
   menu: {
-    width: '260px',
-    backgroundColor: '#fafafa',
+    width: 218,
+    backgroundColor: '#F9F9F9',
   },
   logo: {
     maxHeight: 'none',
@@ -59,6 +59,9 @@ const theme = {
   rightPanel: {
     backgroundColor: '#263238',
     width: 40,
+  },
+  middlePanel: {
+    width: 628,
   },
 };
 

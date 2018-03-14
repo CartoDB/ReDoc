@@ -38,7 +38,7 @@ export const ApiContent = styled.div`
   z-index: 1;
   position: relative;
   overflow: hidden;
-  width: calc(100% - ${props => props.theme.menu.width});
+  width: calc(100% - ${props => props.theme.menu.width}px);
   ${media.lessThan('small')`
     width: 100%;
   `};

@@ -1,7 +1,7 @@
 import styled, { media } from '../styled-components';
 
 export const MiddlePanel = styled.div`
-  width: ${props => 100 - props.theme.rightPanel.width}%;
+  width: ${props => props.theme.middlePanel.width}px;
   padding: ${props => props.theme.spacingUnit * 2}px;
 
   ${media.lessThan('medium')`
@@ -10,7 +10,7 @@ export const MiddlePanel = styled.div`
 `;
 
 export const RightPanel = styled.div`
-  width: ${props => props.theme.rightPanel.width}%;
+  width: ${props => `calc(100% - ${props.theme.middlePanel.width}px)`};
   color: #fafbfc;
   bckground-color: ${props => props.theme.rightPanel.backgroundColor};
   padding: ${props => props.theme.spacingUnit * 2}px;
