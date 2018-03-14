@@ -69,13 +69,11 @@ export class ApiInfo extends React.Component<ApiInfoProps> {
           <ApiHeader>
             {info.title} <span>({info.version})</span>
           </ApiHeader>
+
           {downloadLink && (
-            <p>
-              Download OpenAPI specification:
-              <DownloadButton download={downloadFilename} target="_blank" href={downloadLink}>
-                Download
-              </DownloadButton>
-            </p>
+            <DownloadButton download={downloadFilename} target="_blank" href={downloadLink}>
+              Download OpenAPI specification
+            </DownloadButton>
           )}
 
           {((info.license || info.contact || info.termsOfService) && (
@@ -101,9 +99,7 @@ export class ApiInfo extends React.Component<ApiInfoProps> {
               components={{
                 'security-definitions': {
                   component: SecurityDefs,
-                  propsSelector: _store => ({
-                    securitySchemes: _store!.spec.securitySchemes,
-                  }),
+                  propsSelector: _store => ({ securitySchemes: _store!.spec.securitySchemes }),
                 },
               }}
               store={store}
