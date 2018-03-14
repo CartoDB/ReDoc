@@ -23,6 +23,7 @@ info:
 
     1. `regular`: This API Keys can be created with custom access privileges and can also be removed.
 
+
     # API Key format
 
     Every API Key consists on four main parts:

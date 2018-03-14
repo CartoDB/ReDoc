@@ -6,7 +6,7 @@ const theme = {
     large: '105rem',
   },
   colors: {
-    main: '#32329f',
+    main: '#2E3C43',
     success: '#00aa13',
     redirect: 'orange',
     error: '#e53935',
@@ -29,10 +29,10 @@ const theme = {
     defaultDetailsWidth: '75%',
   },
   baseFont: {
-    size: '14px',
-    lineHeight: '1.5',
-    weight: '300',
-    family: 'Roboto, sans-serif',
+    size: '16px',
+    lineHeight: '24px',
+    weight: '400',
+    family: 'Open Sans, sans-serif',
     smoothing: 'antialiased',
     optimizeSpeed: true,
   },
@@ -40,8 +40,9 @@ const theme = {
     family: 'Montserrat, sans-serif',
   },
   code: {
-    fontSize: '13px',
-    fontFamily: 'Courier, monospace',
+    fontSize: '16px',
+    fontFamily: 'Overpass Mono',
+    fontWeight: '600',
   },
   links: {
     color: undefined, // by default main color
