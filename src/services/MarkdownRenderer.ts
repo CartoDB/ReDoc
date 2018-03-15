@@ -92,14 +92,14 @@ export class MarkdownRenderer {
       return (
         `<a name="${id}"></a>` +
         `<h${level} ${SECTION_ATTR}="${id}" id="${id}">` +
-        `<a class="share-link" href="#${id}"></a>${text}</h${level}>`
+        `${text}<a class="share-link" href="#${id}"></a></h${level}>`
       );
     } else if (level === 2) {
       const { id } = this.saveHeading(text, this.currentTopHeading && this.currentTopHeading.items);
       return (
         `<a name="${id}"></a>` +
         `<h${level} ${SECTION_ATTR}="${id}" id="${id}">` +
-        `<a class="share-link" href="#${id}"></a>${text}</h${level}>`
+        `${text}<a class="share-link" href="#${id}"></a></h${level}>`
       );
     } else {
       return this.originalHeadingRule(text, level, raw);

@@ -44,8 +44,8 @@ export class Operation extends ComponentWithOptions<OperationProps> {
       <OperationRow>
         <MiddlePanel className="middlePanel">
           <Header>
-            <ShareLink href={'#' + operation.getHash()} />
             {summary} {deprecated && <Badge type="warning"> Deprecated </Badge>}
+            <ShareLink href={'#' + operation.getHash()} />
           </Header>
           {pathInMiddle && <Endpoint operation={operation} inverted={true} />}
           {description !== undefined && <Markdown source={description} />}
