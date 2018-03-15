@@ -24,7 +24,6 @@ lib/
 stats.json
 e2e/.build/
 cypress/
-bundles
 bin/cli.js
 
 /benchmark/revisions
