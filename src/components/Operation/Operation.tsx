@@ -23,15 +23,10 @@ const OperationRow = styled(Row)`
   contain: content;
   overflow: hidden;
   position: relative;
+`;
 
-  // &:after {
-  //   position: absolute;
-  //   bottom: 0;
-  //   width: 100%;
-  //   display: block;
-  //   content: '';
-  //   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  // }
+const Header = H2.extend`
+  margin: 20px 0;
 `;
 
 interface OperationProps {
@@ -48,10 +43,10 @@ export class Operation extends ComponentWithOptions<OperationProps> {
     return (
       <OperationRow>
         <MiddlePanel className="middlePanel">
-          <H2>
+          <Header>
             <ShareLink href={'#' + operation.getHash()} />
             {summary} {deprecated && <Badge type="warning"> Deprecated </Badge>}
-          </H2>
+          </Header>
           {pathInMiddle && <Endpoint operation={operation} inverted={true} />}
           {description !== undefined && <Markdown source={description} />}
           <SecurityRequirements securities={operation.security} />

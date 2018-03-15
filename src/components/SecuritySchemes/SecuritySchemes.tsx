@@ -36,6 +36,10 @@ const AuthTable = styled.table`
   }
 `;
 
+const Header = H2.extend`
+  margin: 20px 0;
+`;
+
 export interface OAuthFlowProps {
   type: string;
   flow: OpenAPISecurityScheme['flows'][keyof OpenAPISecurityScheme['flows']];
@@ -96,10 +100,10 @@ export class SecurityDefs extends React.PureComponent<SecurityDefsProps> {
       <div>
         {this.props.securitySchemes.schemes.map(scheme => (
           <div data-section-id={scheme.sectionId} key={scheme.id}>
-            <H2>
+            <Header>
               <ShareLink href={'#' + scheme.sectionId} />
               {scheme.id}
-            </H2>
+            </Header>
             <Markdown source={scheme.description || ''} />
             <AuthTable className="security-details">
               <tbody>
