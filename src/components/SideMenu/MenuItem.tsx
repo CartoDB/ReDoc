@@ -1,10 +1,9 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-// import { ShelfIcon } from '../../common-elements/shelfs';
 import { IMenuItem, OperationModel } from '../../services';
 import { MenuItems } from './MenuItems';
-import { MenuItemLabel, MenuItemLi, MenuItemTitle, OperationBadge } from './styled.elements';
+import { MenuItemLabel, MenuItemLi, MenuItemTitle } from './styled.elements';
 
 interface MenuItemProps {
   item: IMenuItem;
@@ -28,11 +27,6 @@ export class MenuItem extends React.Component<MenuItemProps> {
         ) : (
           <MenuItemLabel depth={item.depth} active={item.active}>
             <MenuItemTitle title={item.name}>{item.name}</MenuItemTitle>
-            {/* {(item.depth > 0 &&
-              item.items.length > 0 && (
-                <ShelfIcon float={'right'} direction={item.active ? 'down' : 'right'} />
-              )) ||
-              null} */}
           </MenuItemLabel>
         )}
         {!withoutChildren &&
@@ -61,7 +55,7 @@ class OperationMenuItemContent extends React.Component<OperationMenuItemContentP
         active={item.active}
         deprecated={item.deprecated}
       >
-        <OperationBadge type={item.httpVerb} />
+        {/* <OperationBadge type={item.httpVerb} /> */}
         <MenuItemTitle width="calc(100% - 32px)">{item.name}</MenuItemTitle>
       </MenuItemLabel>
     );
