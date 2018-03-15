@@ -4,11 +4,16 @@ import { OperationModel } from '../../services/models';
 import { PayloadSamples } from '../PayloadSamples/PayloadSamples';
 import { SourceCodeWithCopy } from '../SourceCode/SourceCode';
 
-import { Tab, TabList, TabPanel, Tabs } from '../../common-elements';
+import { Tab, TabList, TabPanel, Tabs, H5 } from '../../common-elements';
 
 export interface RequestSamplesProps {
   operation: OperationModel;
 }
+
+const RequestHeader = H5.extend`
+  color: #fff;
+  padding: 10px 0;
+`;
 
 @observer
 export class RequestSamples extends React.Component<RequestSamplesProps> {
@@ -26,7 +31,7 @@ export class RequestSamples extends React.Component<RequestSamplesProps> {
     return (
       (hasSamples && (
         <div>
-          <h3> Request samples </h3>
+          <RequestHeader> Request samples </RequestHeader>
 
           <Tabs defaultIndex={0}>
             <TabList>
