@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { MediaContentModel, OperationModel } from '../../services/models';
 
-import { Tab, TabList, TabPanel, Tabs } from '../../common-elements';
+import { Tab, TabList, TabPanel, Tabs, H5 } from '../../common-elements';
 import { PayloadSamples } from '../PayloadSamples/PayloadSamples';
 
 export interface ResponseSampleProps {
@@ -20,6 +20,11 @@ export interface ResponseSamplesProps {
   operation: OperationModel;
 }
 
+const ResponseHeader = H5.extend`
+  color: #fff;
+  padding: 10px 0;
+`;
+
 @observer
 export class ResponseSamples extends React.Component<ResponseSamplesProps> {
   operation: OperationModel;
@@ -35,7 +40,7 @@ export class ResponseSamples extends React.Component<ResponseSamplesProps> {
     return (
       (responses.length > 0 && (
         <div>
-          <h3> Response samples </h3>
+          <ResponseHeader>Response samples</ResponseHeader>
 
           <Tabs defaultIndex={0}>
             <TabList>

@@ -12,28 +12,26 @@ export const Tabs = styled(ReactTabs)`
     flex-wrap: wrap;
 
     > li {
-      padding: 5px 10px;
+      padding: 5px 0;
       display: inline-block;
-      flex: 1;
 
       font-family: ${props => props.theme.headingsFont.family};
       text-transform: uppercase;
       font-weight: 600;
       font-size: 12px;
-      color: #747d82;
-
+      color: #fff;
+      opacity: 0.5;
       cursor: pointer;
       text-align: center;
       outline: none;
       color: #ccc;
 
       &.react-tabs__tab--selected {
-        color: #fff;
+        opacity: 1;
       }
 
       &:only-child {
         flex: none;
-        min-width: 100px;
       }
 
       // &.tab-success {
@@ -51,6 +49,10 @@ export const Tabs = styled(ReactTabs)`
       // &.tab-error {
       //   color: ${props => props.theme.colors.error};
       // }
+    }
+
+    li + li {
+      margin-left: 24px;
     }
   }
   > .react-tabs__tab-panel {
