@@ -1,8 +1,8 @@
 const theme = {
   spacingUnit: 20,
   breakpoints: {
-    small: '50rem',
-    medium: '85rem',
+    small: '20rem',
+    medium: '60rem',
     large: '105rem',
   },
   colors: {
@@ -42,7 +42,7 @@ const theme = {
   },
   code: {
     fontSize: '16px',
-    fontFamily: 'Overpass Mono',
+    fontFamily: 'Overpass Mono, sans-serif',
     fontWeight: '600',
   },
   links: {
@@ -63,7 +63,7 @@ const theme = {
     width: 40,
   },
   middlePanel: {
-    width: 628,
+    width: '50%'
   },
 };
 

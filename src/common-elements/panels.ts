@@ -1,9 +1,13 @@
 import styled, { media } from '../styled-components';
 
 export const MiddlePanel = styled.div`
-  width: ${props => props.theme.middlePanel.width}px;
+  width: ${props => props.theme.middlePanel.width};
   padding: ${props => props.theme.spacingUnit * 2}px;
   position: relative;
+
+  p {
+    margin: 16px 0;
+  }
 
   > div,
   > table {
@@ -27,7 +31,7 @@ export const MiddlePanel = styled.div`
 `;
 
 export const RightPanel = styled.div`
-  width: ${props => `calc(100% - ${props.theme.middlePanel.width}px)`};
+  width: ${props => `calc(100% - ${props.theme.middlePanel.width})`};
   color: #fafbfc;
   bckground-color: ${props => props.theme.rightPanel.backgroundColor};
   padding: ${props => props.theme.spacingUnit * 2}px;
