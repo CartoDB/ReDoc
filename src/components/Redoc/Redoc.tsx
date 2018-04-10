@@ -36,7 +36,7 @@ export class Redoc extends React.Component<RedocProps> {
       <ThemeProvider theme={options.theme}>
         <OptionsProvider options={options}>
           <RedocWrap className="redoc-wrap">
-            <StickyResponsiveSidebar menu={menu} className="menu-content">
+            <StickyResponsiveSidebar menu={menu} className="menu-content js-sidebar-inner">
               <SideMenu menu={menu} />
             </StickyResponsiveSidebar>
             <ApiContent className="api-content">

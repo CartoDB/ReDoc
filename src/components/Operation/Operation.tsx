@@ -43,7 +43,7 @@ export class Operation extends ComponentWithOptions<OperationProps> {
     return (
       <OperationRow>
         <MiddlePanel className="middlePanel">
-          <Header>
+          <Header id={operation.getHash()}>
             {summary} {deprecated && <Badge type="warning"> Deprecated </Badge>}
             <ShareLink href={'#' + operation.getHash()} />
           </Header>

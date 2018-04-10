@@ -7,7 +7,7 @@ import { EmptyDarkRightPanel, MiddlePanel, Row } from '../../common-elements/';
 import { Markdown } from '../Markdown/Markdown';
 import { SecurityDefs } from '../SecuritySchemes/SecuritySchemes';
 
-import { ApiHeader, DownloadButton } from './styled.elements';
+import { DownloadButton } from './styled.elements';
 
 interface ApiInfoProps {
   store: AppStore;
@@ -25,30 +25,6 @@ export class ApiInfo extends React.Component<ApiInfoProps> {
     return (
       <Row>
         <MiddlePanel className="api-info">
-          <ApiHeader>
-            {info.title} <span>({info.version})</span>
-          </ApiHeader>
-
-          {downloadLink && (
-            <DownloadButton download={downloadFilename} target="_blank" href={downloadLink}>
-              Download OpenAPI specification
-            </DownloadButton>
-          )}
-
-          {(info.contact && (
-            <DownloadButton target="_blank" href={info.contact.url}>
-              {info.contact.name}
-            </DownloadButton>
-          )) ||
-            null}
-
-          {(externalDocs && (
-            <p>
-              <a href={externalDocs.url}>{externalDocs.description || externalDocs.url}</a>
-            </p>
-          )) ||
-            null}
-
           <div>
             <Markdown
               source={info.description || ''}
@@ -61,6 +37,26 @@ export class ApiInfo extends React.Component<ApiInfoProps> {
               }}
               store={store}
             />
+
+            {downloadLink && (
+              <DownloadButton download={downloadFilename} target="_blank" href={downloadLink}>
+                Download OpenAPI specification
+              </DownloadButton>
+            )}
+
+            {(info.contact && (
+              <DownloadButton target="_blank" href={info.contact.url}>
+                {info.contact.name}
+              </DownloadButton>
+            )) ||
+              null}
+
+            {(externalDocs && (
+              <p>
+                <a href={externalDocs.url}>{externalDocs.description || externalDocs.url}</a>
+              </p>
+            )) ||
+              null}
           </div>
         </MiddlePanel>
         <EmptyDarkRightPanel />

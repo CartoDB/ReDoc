@@ -79,7 +79,7 @@ export const MenuItemLi = withProps<{ depth: number }>(styled.li)`
   text-overflow: ellipsis;
   padding: 0;
   margin-bottom: 12px;
-  ${props => (props.depth === 0 ? 'margin-top: 15px' : '')};
+  ${props => (props.depth < 2 ? 'margin-top: 32px' : '')};
 `;
 
 export const menuItemDepth = {
@@ -115,8 +115,8 @@ export const MenuItemLabel = withProps<{ depth: number; active: boolean; depreca
   justify-content: space-between;
   font-family: ${props => props.theme.headingsFont.family};
   ${props => menuItemDepth[props.depth]};
-  font-weight: ${props => (props.active ? 600 : 400)};
-  color: ${props => (props.active ? props.theme.colors.highlight : props.theme.colors.main)};
+  font-weight: ${props => ((props.active || props.depth < 2) ? 600 : 400)};
+  
 
   ${props => (props.deprecated && deprecatedCss) || ''};
 `;

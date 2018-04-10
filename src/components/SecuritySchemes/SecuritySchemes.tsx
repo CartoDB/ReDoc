@@ -100,7 +100,7 @@ export class SecurityDefs extends React.PureComponent<SecurityDefsProps> {
       <div>
         {this.props.securitySchemes.schemes.map(scheme => (
           <div data-section-id={scheme.sectionId} key={scheme.id}>
-            <Header>
+            <Header id={scheme.sectionId}>
               {scheme.id}
               <ShareLink href={'#' + scheme.sectionId} />
             </Header>

@@ -35,7 +35,7 @@ const StyledStickySidebar = withProps<{ open?: boolean }>(styled.div)`
   position: -webkit-sticky;
   top: 0;
 
-  padding: 36px 16px;
+  padding: 32px 16px;
 
   ${media.lessThan('small')`
     position: fixed;

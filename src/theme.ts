@@ -1,8 +1,9 @@
 const theme = {
   spacingUnit: 20,
+  showApiHeader: false,
   breakpoints: {
     small: '20rem',
-    medium: '60rem',
+    medium: '55rem',
     large: '105rem',
   },
   colors: {
