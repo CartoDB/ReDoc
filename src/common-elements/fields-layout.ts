@@ -18,10 +18,6 @@ export const PropertyCell = styled.td`
   tr:first-of-type > &,
   tr.last > & {}
 
-  tr:first-of-type > & {}
-
-  tr.last > & {}
-
   // Dropdown
   tr.last + tr > & {}
 
@@ -62,7 +58,7 @@ export const PropertyDetailsCell = styled.td`
 export const PropertyBullet = styled.span`
   color: ${props => props.theme.colors.highlight};
   font-family: ${props => props.theme.code.fontFamily};
-  // background-color: ${props => props.theme.colors.highlight};
+  background-color: rgba(80, 0, 204, 0.05);
 `;
 
 export const InnerPropertiesWrap = styled.div`
@@ -72,7 +68,7 @@ export const InnerPropertiesWrap = styled.div`
 export const PropertiesTable = styled.table`
   border-collapse: collapse;
   border-radius: 3px;
-  margin-top: 1.5em;
+  margin: 1.5em 0;
   border-spacing: 0;
   width: 100%;
 

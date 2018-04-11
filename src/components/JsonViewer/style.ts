@@ -20,14 +20,8 @@ export const jsonStyles = css`
     color: firebrick;
   }
 
-  .type-number {
-    color: #4a8bb3;
-  }
-
   .type-string {
-    color: #66b16e;
     & + a {
-      color: #66b16e;
       text-decoration: underline;
     }
   }

@@ -17,6 +17,10 @@ const StyledPre = styled.pre`
   white-space: pre-wrap;
 `;
 
+const StyledFigure = styled.figure`
+  margin: 0;
+`;
+
 export interface SourceCodeProps {
   source: string;
   lang: string;
@@ -25,7 +29,11 @@ export interface SourceCodeProps {
 export class SourceCode extends React.PureComponent<SourceCodeProps> {
   render() {
     const { source, lang } = this.props;
-    return <StyledPre dangerouslySetInnerHTML={{ __html: highlight(source, lang) }} />;
+    return (
+      <StyledFigure className="highlight">
+        <StyledPre dangerouslySetInnerHTML={{ __html: highlight(source, lang) }} />
+      </StyledFigure>
+    );
   }
 }
 

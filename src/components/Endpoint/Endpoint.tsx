@@ -51,18 +51,18 @@ export class Endpoint extends ComponentWithOptions<EndpointProps, EndpointState>
           <ServerRelativeURL>{operation.path}</ServerRelativeURL>
           <ShelfIcon
             float={'right'}
-            color={inverted ? 'black' : 'white'}
-            size={'20px'}
+            color={inverted ? '#BABEC0' : 'white'}
+            size={'30px'}
             direction={expanded ? 'up' : 'down'}
             style={{ marginRight: '-25px' }}
           />
         </EndpointInfo>
         <ServersOverlay expanded={expanded}>
           {operation.servers.map(server => (
-            <ServerItem key={server.url}>
+            <ServerItem key={server.url} className="endpoint-wrap">
               <div>{server.description}</div>
               <SelectOnClick>
-                <ServerUrl>
+                <ServerUrl className="endpoint-wrap--url">
                   {!hideHostname && <span>{server.url}</span>}
                   {operation.path}
                 </ServerUrl>

@@ -27,7 +27,6 @@ export const markdownCss = css`
     background-color: rgba(80, 0, 204, 0.05);
     font-family: ${props => props.theme.code.fontFamily};
     border-radius: 4px;
-    /* border: 1px solid rgba(38, 50, 56, 0.1); */
     padding: 1px 4px;
     font-size: ${props => props.theme.code.fontSize};
   }

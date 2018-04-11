@@ -11,6 +11,10 @@ export const MiddlePanel = styled.div`
 
   > div,
   > table {
+    tr > td:last-of-type{
+      padding-left: .5em;
+    }
+
     margin-bottom: 30px;
   }
 

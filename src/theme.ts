@@ -9,6 +9,7 @@ const theme = {
   colors: {
     main: '#2E3C43',
     highlight: '#5300CC',
+    highlightBackground: '#5300CC',
     success: '#00aa13',
     redirect: 'orange',
     error: '#e53935',
@@ -44,9 +45,10 @@ const theme = {
   code: {
     fontSize: '16px',
     fontFamily: '"Overpass Mono", sans-serif',
+    fontFamilyAlternative: '"PT Mono", monospace',
     fontWeight: '600',
   },
-  links: {// FIX ME
+  links: {
     color: '#1FAC06',
     visited: '#1FAC06', // by default main color
     hover: '#188B04',

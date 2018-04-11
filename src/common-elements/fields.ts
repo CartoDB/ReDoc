@@ -10,6 +10,8 @@ export const FieldLabel = styled.span`
   vertical-align: middle;
   font-size: 0.929em;
   line-height: 20px;
+  font-family: "Overpass Mono", sans-serif;
+  background-color: inherit;
 `;
 
 export const TypePrefix = styled(FieldLabel)`
@@ -27,6 +29,7 @@ export const TypeFormat = TypeName;
 
 export const RequiredLabel = styled(FieldLabel.withComponent('div'))`
   color: #e53935;
+  background-color: none;
   font-size: 11px;
   font-weight: normal;
   margin-left: 20px;

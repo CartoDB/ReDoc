@@ -14,14 +14,14 @@ export const ServerRelativeURL = styled.span`
 export const EndpointInfo = withProps<{ expanded?: boolean; inverted?: boolean }>(styled.div)`
   padding: 10px 30px 10px ${props => (props.inverted ? '10px' : '20px')};
   border-radius: ${props => (props.inverted ? '0' : '4px 4px 0 0')};
-  background-color: ${props => (props.inverted ? 'transparent' : '#222d32')};
+  background-color: ${props => (props.inverted ? '#F9F9F9' : '#222d32')};
   display: block;
   font-weight: 300;
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
   border: ${props => (props.inverted ? '0' : '1px solid transparent')};
-  border-bottom: ${props => (props.inverted ? '1px solid #ccc' : '0')};
+  border-bottom: none;
   transition: border-color 0.25s ease;
 
   ${props => (props.expanded && !props.inverted && 'border-color: #3c4448;') || ''}
@@ -54,10 +54,9 @@ export const ServersOverlay = withProps<{ expanded: boolean }>(styled.div)`
   position: absolute;
   width: 100%;
   z-index: 100;
-  background: #fafafa;
   color: #263238;
   box-sizing: border-box;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.33);
+  background-color: #F9F9F9;
   overflow: hidden;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -68,15 +67,14 @@ export const ServersOverlay = withProps<{ expanded: boolean }>(styled.div)`
 
 export const ServerItem = styled.div`
   padding: 10px;
+  font-family: ${props => props.theme.headingsFont.family};
+  font-weight: 600;
 `;
 
 export const ServerUrl = styled.div`
   padding: 5px;
-  border: 1px solid #ccc;
-  background: #fff;
+  margin-top: .5em;
   word-break: break-all;
-  color: ${props => props.theme.colors.main};
-  > span {
-    color: ${props => props.theme.colors.text};
-  }
+  font-family: ${props => props.theme.code.fontFamilyAlternative};
+  font-weight: 400;
 `;
