@@ -9,6 +9,16 @@ export const MiddlePanel = styled.div`
     line-height: 48px;
   }
 
+  ul,
+  ol h1 {
+    font-size: 18px;
+    margin-top: 16px;
+  }
+
+  > p {
+    margin-top: 16px;
+  }
+
   > div,
   > table {
     tr > td:last-of-type{
