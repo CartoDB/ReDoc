@@ -33,9 +33,10 @@ export const MiddlePanel = styled.div`
 export const RightPanel = styled.div`
   width: ${props => `calc(100% - ${props.theme.middlePanel.width})`};
   color: #fafbfc;
-  bckground-color: ${props => props.theme.rightPanel.backgroundColor};
+  background-color: ${props => props.theme.rightPanel.backgroundColor};
   padding: ${props => props.theme.spacingUnit * 2}px;
   position: relative;
+  font-family: ${props => props.theme.rightPanel.fontFamily};
 
   ${media.lessThan('medium')`
     width: 100%;

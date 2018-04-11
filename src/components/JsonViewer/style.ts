@@ -5,9 +5,9 @@ export const jsonStyles = css`
     display: none;
   }
 
-  font-family: ${props => props.theme.code.fontFamily};
+  font-family: ${props => props.theme.rightPanel.fontFamily};
   font-size: ${props => props.theme.code.fontSize};
-
+  font-weight: 600;
   word-break: break-all;
   word-wrap: break-word;
   white-space: pre-wrap;

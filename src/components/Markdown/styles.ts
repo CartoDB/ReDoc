@@ -88,7 +88,7 @@ export const markdownCss = css`
     word-break: keep-all;
     border-collapse: collapse;
     border-spacing: 0;
-    margin-top: 1.5em;
+    margin-top: 1em;
     margin-bottom: 1.5em;
   }
 

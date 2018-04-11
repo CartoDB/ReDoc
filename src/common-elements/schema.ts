@@ -41,15 +41,9 @@ export const OneOfButton = withProps<{ active: boolean }>(styled.li)`
 export const ArrayOpenningLabel = styled.div`
   font-size: 0.9em;
   font-family: ${props => props.theme.code.fontFamily};
-  &::after {
-    content: ' [';
-  }
 `;
 
 export const ArrayClosingLabel = styled.div`
   font-size: 0.9em;
   font-family: ${props => props.theme.code.fontFamily};
-  &::after {
-    content: ']';
-  }
 `;

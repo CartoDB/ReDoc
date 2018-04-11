@@ -10,46 +10,23 @@ export const PropertiesTableCaption = styled.caption`
 `;
 
 export const PropertyCell = styled.td`
-  border-left: 1px solid ${props => props.theme.schemaView.linesColor};
   box-sizing: border-box;
   position: relative;
-  padding: 10px 10px 10px 0;
+  padding: 10px;
+  border: 1px solid ${props => props.theme.schemaView.linesColor};
 
   tr:first-of-type > &,
-  tr.last > & {
-    border-left-width: 0;
-    background-position: top left;
-    background-repeat: no-repeat;
-    background-size: 1px 100%;
-  }
+  tr.last > & {}
 
-  tr:first-of-type > & {
-    background-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      transparent 21px,
-      ${props => props.theme.schemaView.linesColor} 21px,
-      ${props => props.theme.schemaView.linesColor} 100%
-    );
-  }
+  tr:first-of-type > & {}
 
-  tr.last > & {
-    background-image: linear-gradient(
-      to bottom,
-      ${props => props.theme.schemaView.linesColor} 0%,
-      ${props => props.theme.schemaView.linesColor} 21px,
-      transparent 21px,
-      transparent 100%
-    );
-  }
+  tr.last > & {}
 
-  tr.last + tr > & {
-    border-left-color: transparent;
-  }
+  // Dropdown
+  tr.last + tr > & {}
 
   tr:only-child > & {
     background: none;
-    border-left-color: transparent;
   }
 `;
 
@@ -71,9 +48,9 @@ export const PropertyNameCell = PropertyCell.extend`
 `;
 
 export const PropertyDetailsCell = styled.td`
-  border-bottom: 1px solid #9fb4be;
-  padding: 10px 0;
+  padding: 10px;
   width: ${props => props.theme.schemaView.defaultDetailsWidth};
+  border: 1px solid ${props => props.theme.schemaView.linesColor};
   box-sizing: border-box;
   vertical-align: top;
 
@@ -83,27 +60,9 @@ export const PropertyDetailsCell = styled.td`
 `;
 
 export const PropertyBullet = styled.span`
-  color: ${props => props.theme.schemaView.linesColor};
+  color: ${props => props.theme.colors.highlight};
   font-family: ${props => props.theme.code.fontFamily};
-  margin-right: 10px;
-
-  &::before {
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    width: 10px;
-    height: 1px;
-    background: ${props => props.theme.schemaView.linesColor};
-  }
-
-  &::after {
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    width: 1px;
-    background: ${props => props.theme.schemaView.linesColor};
-    height: 7px;
-  }
+  // background-color: ${props => props.theme.colors.highlight};
 `;
 
 export const InnerPropertiesWrap = styled.div`
@@ -113,7 +72,7 @@ export const InnerPropertiesWrap = styled.div`
 export const PropertiesTable = styled.table`
   border-collapse: collapse;
   border-radius: 3px;
-
+  margin-top: 1.5em;
   border-spacing: 0;
   width: 100%;
 

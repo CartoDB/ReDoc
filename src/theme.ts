@@ -27,7 +27,7 @@ const theme = {
     },
   },
   schemaView: {
-    linesColor: '#7f99cf',
+    linesColor: '#dddddd',
     defaultDetailsWidth: '75%',
   },
   baseFont: {
@@ -39,14 +39,14 @@ const theme = {
     optimizeSpeed: true,
   },
   headingsFont: {
-    family: 'Montserrat, sans-serif',
+    family: '"Montserrat", sans-serif',
   },
   code: {
     fontSize: '16px',
-    fontFamily: 'Overpass Mono, sans-serif',
+    fontFamily: '"Overpass Mono", sans-serif',
     fontWeight: '600',
   },
-  links: {
+  links: {// FIX ME
     color: '#1FAC06',
     visited: '#1FAC06', // by default main color
     hover: '#188B04',
@@ -62,6 +62,7 @@ const theme = {
   rightPanel: {
     backgroundColor: '#263238',
     width: 40,
+    fontFamily: '"PT Mono", monospace'
   },
   middlePanel: {
     width: '50%'
