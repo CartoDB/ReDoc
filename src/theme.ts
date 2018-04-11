@@ -54,8 +54,9 @@ const theme = {
     hover: '#188B04',
   },
   menu: {
-    width: 218,
-    backgroundColor: '#F9F9F9',
+    width: '16.6667%',
+    minWidth: '218',
+    backgroundColor: '#F9F9F9'
   },
   logo: {
     maxHeight: 'none',

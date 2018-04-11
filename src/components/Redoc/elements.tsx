@@ -23,7 +23,7 @@ export const RedocWrap = styled.div`
   }
 
   .redoc-markdown h1 {
-    padding-top: ${props => props.theme.spacingUnit * 2}px;
+    line-height: 48px;
   }
 
   a {
@@ -35,7 +35,7 @@ export const ApiContent = styled.div`
   z-index: 1;
   position: relative;
   overflow: hidden;
-  width: calc(100% - ${props => props.theme.menu.width}px);
+  width: calc(100% - ${props => props.theme.menu.width});
   ${media.lessThan('small')`
     width: 100%;
   `};

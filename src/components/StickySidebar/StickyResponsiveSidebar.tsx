@@ -21,7 +21,7 @@ export interface StickySidebarProps {
 const stickyfill = Stickyfill && Stickyfill();
 
 const StyledStickySidebar = withProps<{ open?: boolean }>(styled.div)`
-  width: ${props => props.theme.menu.width}px;
+  width: ${props => props.theme.menu.width};
   background-color: ${props => props.theme.menu.backgroundColor};
   overflow: hidden;
   display: flex;
