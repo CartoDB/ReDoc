@@ -16,7 +16,7 @@ export const MiddlePanel = styled.div`
   }
 
   p {
-    margin-top: 16px;
+    margin: 16px 0;
   }
 
   > div,
