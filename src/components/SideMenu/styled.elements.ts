@@ -115,7 +115,7 @@ export const MenuItemLabel = withProps<{ depth: number; active: boolean; depreca
   margin: 0;
   display: flex;
   justify-content: space-between;
-  font-family: ${props => props.theme.baseFont.family};
+  font-family: ${props => props.theme.headingsFont.family};
   font-weight: ${props => (props.active ? '800' : '400')};
   ${props => menuItemDepth[props.depth]};
 
