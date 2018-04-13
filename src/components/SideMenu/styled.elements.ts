@@ -89,15 +89,15 @@ export const menuItemDepth = {
     padding-bottom: 0;
     cursor: default;
     color: ${props => props.theme.colors.main};
-    font-family: ${props => props.theme.baseFont.family};
+    font-family: ${props => props.theme.headingsFont.family};
   `,
   1: css`
-    font-family: ${props => props.theme.baseFont.family};
+    font-family: ${props => props.theme.headingsFont.family};
     font-size: 14px;
     color: ${props => props.theme.colors.main};
   `,
   2: css`
-    font-family: ${props => props.theme.baseFont.family};
+    font-family: ${props => props.theme.headingsFont.family};
     font-size: 14px;
     color: ${props => props.theme.colors.main};
   `,
