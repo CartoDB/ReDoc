@@ -63,10 +63,10 @@ export const OperationBadge = withProps<{ type: string }>(styled.span).attrs({
 export const MenuItemUl = withProps<{ active: boolean }>(styled.ul)`
   margin: 0;
   padding: 0;
+  padding-left: 12px;
 
   & ul {
-    padding-left: 12px;
-    padding-top: 12px;
+    padding-left: 20px;
   }
 
   // To collapse menu when no active
@@ -78,25 +78,27 @@ export const MenuItemLi = withProps<{ depth: number }>(styled.li)`
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0;
-  margin-bottom: 12px;
-  ${props => (props.depth < 2 ? 'margin-top: 32px' : '')};
+  line-height: 2;
 `;
 
 export const menuItemDepth = {
   0: css`
     opacity: 0.7;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 14px;
     padding-bottom: 0;
     cursor: default;
     color: ${props => props.theme.colors.main};
+    font-family: ${props => props.theme.baseFont.family};
   `,
   1: css`
-    font: 600 12px/16px 'Montserrat';
+    font-family: ${props => props.theme.baseFont.family};
+    font-size: 14px;
     color: ${props => props.theme.colors.main};
   `,
   2: css`
-    font: 400 12px/16px 'Open Sans';
+    font-family: ${props => props.theme.baseFont.family};
+    font-size: 14px;
     color: ${props => props.theme.colors.main};
   `,
 };
@@ -113,10 +115,9 @@ export const MenuItemLabel = withProps<{ depth: number; active: boolean; depreca
   margin: 0;
   display: flex;
   justify-content: space-between;
-  font-family: ${props => props.theme.headingsFont.family};
+  font-family: ${props => props.theme.baseFont.family};
+  font-weight: ${props => (props.active ? '800' : '400')};
   ${props => menuItemDepth[props.depth]};
-  font-weight: ${props => ((props.active || props.depth < 2) ? 600 : 400)};
-  
 
   ${props => (props.deprecated && deprecatedCss) || ''};
 `;

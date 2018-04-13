@@ -2,7 +2,7 @@ import styled, { media } from '../styled-components';
 
 export const MiddlePanel = styled.div`
   width: ${props => props.theme.middlePanel.width};
-  padding: 48px 34px 12px;
+  padding: 32px;
   position: relative;
 
   h1 {

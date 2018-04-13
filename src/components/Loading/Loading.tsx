@@ -1,15 +1,17 @@
 import * as React from 'react';
-import styled, { withProps } from '../../styled-components';
+import styled from '../../styled-components';
 
 import { Spinner } from './Spinner.svg';
 
-const LoadingMessage = withProps<{ color: string }>(styled.div)`
-  font-family: helvetica, sans;
-  width: 100%;
+const LoadingWrapper = styled.div`
   text-align: center;
-  font-size: 25px;
-  margin: 30px 0 20px 0;
-  color: ${props => props.color};
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  padding: 2em 0;
+  justify-content: center;
+  display: -webkit-flex; /* Safari */
+  -webkit-justify-content: center; /* Safari 6.1+ */
 `;
 
 export interface LoadingProps {
@@ -19,10 +21,9 @@ export interface LoadingProps {
 export class Loading extends React.PureComponent<LoadingProps> {
   render() {
     return (
-      <div style={{ textAlign: 'center' }}>
-        <LoadingMessage color={this.props.color}>Loading ...</LoadingMessage>
+      <LoadingWrapper>
         <Spinner color={this.props.color} />
-      </div>
+      </LoadingWrapper>
     );
   }
 }
