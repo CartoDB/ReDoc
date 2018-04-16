@@ -63,10 +63,9 @@ export const OperationBadge = withProps<{ type: string }>(styled.span).attrs({
 export const MenuItemUl = withProps<{ active: boolean }>(styled.ul)`
   margin: 0;
   padding: 0;
-  padding-left: 12px;
 
   & ul {
-    padding-left: 20px;
+    padding: 8px 0 8px 16px;
   }
 
   // To collapse menu when no active
@@ -77,7 +76,7 @@ export const MenuItemLi = withProps<{ depth: number }>(styled.li)`
   list-style: none inside none;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 0;
+  padding: 8px 0;
   line-height: 2;
 `;
 
@@ -85,7 +84,7 @@ export const menuItemDepth = {
   0: css`
     opacity: 0.7;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 12px;
     padding-bottom: 0;
     cursor: default;
     color: ${props => props.theme.colors.main};
@@ -93,12 +92,12 @@ export const menuItemDepth = {
   `,
   1: css`
     font-family: ${props => props.theme.headingsFont.family};
-    font-size: 14px;
+    font-size: 12px;
     color: ${props => props.theme.colors.main};
   `,
   2: css`
     font-family: ${props => props.theme.headingsFont.family};
-    font-size: 14px;
+    font-size: 12px;
     color: ${props => props.theme.colors.main};
   `,
 };
