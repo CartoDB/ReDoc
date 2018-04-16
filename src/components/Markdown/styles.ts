@@ -29,6 +29,9 @@ export const markdownCss = css`
     border-radius: 4px;
     padding: 1px 4px;
     font-size: ${props => props.theme.code.fontSize};
+    display: inline-block;
+    overflow: scroll;
+    width: 100%;
   }
 
   pre {
