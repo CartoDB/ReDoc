@@ -3,7 +3,7 @@ import styled from '../styled-components';
 
 const ErrorWrapper = styled.div`
   padding: 20px;
-  color: red;
+  text-align: center;
 `;
 
 export class ErrorBoundary extends React.Component<{}, { error?: Error }> {
@@ -19,18 +19,10 @@ export class ErrorBoundary extends React.Component<{}, { error?: Error }> {
 
   render() {
     if (this.state.error) {
+      console.error(this.state.error.message);
       return (
         <ErrorWrapper>
-          <h1>Something went wrong...</h1>
-          <small> {this.state.error.message} </small>
-          <p>
-            <details>
-              <summary>Stack trace</summary>
-              <pre>{this.state.error.stack}</pre>
-            </details>
-          </p>
-          <small> ReDoc Version: {__REDOC_VERSION__}</small> <br />
-          <small> Commit: {__REDOC_REVISION__}</small>
+          <h1>We could not load the documentation. Check the console for more details.</h1>
         </ErrorWrapper>
       );
     }
