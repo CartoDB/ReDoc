@@ -9,6 +9,8 @@
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
+# Dist directory
+# ./bundles
 
 ### Node ###
 # Logs
@@ -31,4 +33,5 @@ bin/cli.js
 /coverage
 .ghpages-tmp
 stats.json
+secrets.json
 /package-lock.json

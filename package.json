@@ -22,7 +22,8 @@
     "lint": "tslint --project tsconfig.json",
     "benchmark": "node ./benchmark/benchmark.js",
     "start:demo": "webpack-dev-server --config demo/webpack.config.ts",
-    "compile:cli": "tsc bin/cli.ts --target es6 --module commonjs --types yargs"
+    "compile:cli": "tsc bin/cli.ts --target es6 --module commonjs --types yargs",
+    "publish:branch": "yarn bundle && ./scripts/publish-branch.sh"
   },
   "author": "",
   "license": "MIT",
@@ -86,10 +87,13 @@
   "dependencies": {
     "@types/mark.js": "^8.11.1",
     "@types/marked": "^0.3.0",
+    "aws-sdk": "^2.398.0",
     "classnames": "^2.2.5",
+    "current-git-branch": "^1.1.0",
     "decko": "^1.2.0",
     "dompurify": "^1.0.2",
     "eventemitter3": "^3.0.0",
+    "fastly": "^2.2.1",
     "json-pointer": "^0.6.0",
     "json-schema-ref-parser": "^4.0.4",
     "lunr": "^2.1.5",
