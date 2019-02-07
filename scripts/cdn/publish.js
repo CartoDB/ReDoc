@@ -103,7 +103,7 @@ async function uploadFiles(folder) {
 function isValidFile(fileName) {
   const validExtensions = ['.js', '.map'];
   const validExt = validExtensions.includes(path.extname(fileName));
-  return validExt && fileName.startsWith('carto-vl');
+  return validExt && fileName.startsWith('redoc');
 }
 
 async function compressAndUploadFile(folder, fileName) {
